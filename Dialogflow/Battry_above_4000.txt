@@ -1,0 +1,252 @@
+    
+
+
+function battery_above_4000(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_Power_Rating) > 4000)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Battery Power: ` + model.Battery_Power_Rating,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Filter further for Battery power`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_option(agent) {
+    agent.add(`Great!!Select an option below:`);
+    agent.add(new Suggestion(`Battery above 4000 with Color`));
+    agent.add(new Suggestion(`Battery above 4000 with price`));
+    agent.add(new Suggestion(`Battery above 4000 with Rating`));
+    agent.add(new Suggestion(`Battery above 4000 with Storage`));
+    agent.add(new Suggestion(`Battery above 4000 with Camera`));
+  }
+
+function Battery_above_4000_Color(agent) {
+    agent.add(`Well... Which Color would you like to go with?`);
+    agent.add(new Suggestion(`Battery above 4000 & Blue`));
+    agent.add(new Suggestion(`Battery above 4000 & Black`));
+    agent.add(new Suggestion(`Battery above 4000 & White`));
+    agent.add(new Suggestion(`Battery above 4000 & Pink`));
+    agent.add(new Suggestion(`Battery above 4000 & Purple`));
+    agent.add(new Suggestion(`Battery above 4000 & Silver`));
+    agent.add(new Suggestion(`Battery above 4000 & Gold`));
+    agent.add(new Suggestion(`Battery above 4000 & Red`));
+    agent.add(new Suggestion(`Battery above 4000 & Gray`));
+    agent.add(new Suggestion(`Battery above 4000 & Aura Glow`));
+  }
+
+function Battery_above_4000_price(agent) {
+    agent.add(`Good. Choose a Price option from below`);
+    agent.add(new Suggestion(`Battery above 4000 & price Upto INR 25000`));
+    agent.add(new Suggestion(`Battery above 4000 & price INR 25,000/- to 50,000/-`));
+    agent.add(new Suggestion(`Battery above 4000 & price above INR 50,000/-`));
+  }
+
+function Battery_above_4000_Rating(agent) {
+     agent.add(`choose a rating option from below`);
+     agent.add(new Suggestion(`Battery above 4000 & Rating 4+`));
+     agent.add(new Suggestion(`Battery above 4000 & Rating <4`));
+}
+
+function Battery_above_4000_Storage(agent) {
+     agent.add(` Please choose a storage limit from below:`);
+     agent.add(new Suggestion(`Battery above 4000 & Storage above 128 GB`));
+     agent.add(new Suggestion(`Battery above 4000 & Storage Upto 128 GB`));
+}
+
+function Battery_above_4000_Camera(agent){
+     agent.add(`Choose the no. of rear camera that you are interested in:`);
+     agent.add(new Suggestion(`Battery above 4000 & Camera less than 3`));
+     agent.add(new Suggestion(`Battery above 4000 & Camera more than 3+`)); 
+}
+
+function Battery_above_4000_Rating_4plus(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) >= 4000 && parseFloat(filtered.Rating) >= 4)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rating: ` + model.Rating,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_Rating_below4(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) >= 4000 && parseFloat(filtered.Rating) < 4)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rating: ` + model.Rating,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_Storage_above_128GB(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) >= 4000 && parseFloat(filtered.ROM) > 128)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Internal Storage: ` + model.ROM,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_Storage_Upto_128GB(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) >= 4000 && parseFloat(filtered.ROM) <= 128)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Internal Storage: ` + model.ROM,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_Camera less than 3(agent){
+     agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) >= 4000 && parseFloat(filtered.No_of_rear_Camera) < 3)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rear Camera: ` + model.Rear_Camera + `; Front Camera: ` + model.Front_Camera,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+
+function Battery_above_4000_Camera more than 3(agent){
+     agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) >= 4000 && parseFloat(filtered.No_of_rear_Camera) >= 3)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rear Camera: ` + model.Rear_Camera + `; Front Camera: ` + model.Front_Camera,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_price_INR_25000(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) < 4000 && parseFloat(filtered.Price) <= 25000)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Price: ` + model.Price,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_price_25K_to_50K(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) < 4000 && parseFloat(filtered.Price) <= 25000 && parseFloat(filtered.Price) < 50000)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Price: ` + model.Price,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function Battery_above_4000_price_above_50K(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Battery_power_Rating) < 4000 && parseFloat(filtered.Price) >= 50000)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Price: ` + model.Price,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }

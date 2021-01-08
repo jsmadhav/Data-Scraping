@@ -1,0 +1,157 @@
+function rating_4_plus(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Rating) >= 4)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rating: ` + model.Rating,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Filter further for rating`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function rating_4_plus_option(agent) {
+    agent.add(`Great!!Select an option below:`);
+    agent.add(new Suggestion(`rating_4_plus with Color`));
+    agent.add(new Suggestion(`rating_4_plus with Storage`));
+    agent.add(new Suggestion(`rating_4_plus with Camera`));
+  }
+
+function rating_4_plus_Color(agent) {
+    agent.add(`Well... Which Color would you like to go with?`);
+    agent.add(new Suggestion(`rating_4_plus & Blue`));
+    agent.add(new Suggestion(`rating_4_plus & Black`));
+    agent.add(new Suggestion(`rating_4_plus & White`));
+    agent.add(new Suggestion(`rating_4_plus & Pink`));
+    agent.add(new Suggestion(`rating_4_plus & Purple`));
+    agent.add(new Suggestion(`rating_4_plus & Silver`));
+    agent.add(new Suggestion(`rating_4_plus & Gold`));
+    agent.add(new Suggestion(`rating_4_plus & Red`));
+    agent.add(new Suggestion(`rating_4_plus & Gray`));
+    agent.add(new Suggestion(`rating_4_plus & Aura Glow`));
+  }
+
+
+function rating_4_plus_Storage(agent) {
+     agent.add(` Please choose a storage limit from below:`);
+     agent.add(new Suggestion(`rating_4_plus & Storage above 128 GB`));
+     agent.add(new Suggestion(`rating_4_plus & Storage Upto 128 GB`));
+}
+
+function rating_4_plus_Camera(agent){
+     agent.add(`Choose the no. of rear camera that you are interested in:`);
+     agent.add(new Suggestion(`rating_4_plus & Camera less than 3`));
+     agent.add(new Suggestion(`rating_4_plus & Camera more than 3+`)); 
+}
+
+
+function rating_4_plus_Storage_above_128GB(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Rating) >= 4 && parseFloat(filtered.ROM) > 128)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Internal Storage: ` + model.ROM,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function rating_4_plus_Storage_Upto_128GB(agent) {
+    agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Rating) >= 4 && parseFloat(filtered.ROM) <= 128)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Internal Storage: ` + model.ROM,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function rating_4_plus_Camera less than 3(agent){
+     agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Rating) >= 4 && parseFloat(filtered.No_of_rear_Camera) < 3)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rear Camera: ` + model.Rear_Camera + `; Front Camera: ` + model.Front_Camera,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+function rating_4_plus_Camera more than 3(agent){
+     agent.add(`Here are the best picks for you`);
+    return getSpreadsheetData().then(res => {
+      var rating = res.data
+      .filter(filtered => parseFloat(filtered.Rating) >= 4 && parseFloat(filtered.No_of_rear_Camera) >= 3)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Rear Camera: ` + model.Rear_Camera + `; Front Camera: ` + model.Front_Camera,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
+
+
+function rating_4_plus_Color_choose(agent) {
+    const color_choose = agent.parameters.color_choose.toLowerCase();
+    agent.add(`Here is what I found:`);
+    return getSpreadsheetData().then(res => {
+      var choose_color = res.data
+      .filter(filtered => filtered.Colour.toLowerCase().includes(color_choose) && parseFloat(filtered.Rating) >= 4)
+      .map(model => {
+        agent.add(new Card({
+          title: model.Title,
+          imageUrl: model.Image_url,
+          text: `Colors available: ` + model.Colour,
+          buttonText: `Click here for more`,
+          buttonUrl: model.Product_url
+        }));
+      });
+      agent.add(new Suggestion(`Click here to go back to the main menu`));
+      agent.add(new Suggestion(`Contact details`));
+      agent.add(new Suggestion(`I found what I was looking for`));
+    });
+  }
